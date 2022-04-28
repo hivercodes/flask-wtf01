@@ -8,7 +8,7 @@
 	<body>
         <div class="container">
 		<h1>Login</h1>
-			<form method="POST" action="{{ url_for('login') }}">
+			<form method="POST" action="{{ url_for('login') }}" novalidate>
 				{{ form.hidden_tag() }}
 				{{ form.username.label(class="form-label") }} {{ form.username(size=30) }}
 				{% for err in form.username.errors %}

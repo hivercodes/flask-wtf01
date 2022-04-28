@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email, Length
 
 #create flask instance
 app = Flask(__name__)
@@ -11,8 +11,8 @@ app.config["SECRET_KEY"] = "wasklefgheakmhrfgblkj"
 
 #login form class
 class LoginForm(FlaskForm):
-    username = StringField(label="username: ", validators=[DataRequired()])
-    password = PasswordField(label="password: ", validators=[DataRequired()])
+    username = StringField(label="username: ", validators=[DataRequired(), Email()])
+    password = PasswordField(label="password: ", validators=[DataRequired(), Length(min=8)])
     submit = SubmitField(label="login")
 
 
@@ -33,6 +33,10 @@ def login():
         form.username.data = ''
         password = form.password.data
         form.password.data = ''
+        if username == "admin@email.com" and password == "12345678":
+            return render_template("success.html")
+        else:
+            return render_template("denied.html")
     return render_template("login.html", username=username, password=password, form=form)
 
 #run app
