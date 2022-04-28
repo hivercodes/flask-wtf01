@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, PasswordField
+from wtforms.validators import DataRequired
 
 #create flask instance
 app = Flask(__name__)
@@ -10,9 +11,9 @@ app.config["SECRET_KEY"] = "wasklefgheakmhrfgblkj"
 
 #login form class
 class LoginForm(FlaskForm):
-    username = StringField("username: ")
-    password = StringField("password: ")
-    submit = SubmitField("login")
+    username = StringField(label="username: ", validators=[DataRequired()])
+    password = PasswordField(label="password: ", validators=[DataRequired()])
+    submit = SubmitField(label="login")
 
 
 #set up routing
