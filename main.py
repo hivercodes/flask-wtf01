@@ -10,8 +10,8 @@ app.config["SECRET_KEY"] = "wasklefgheakmhrfgblkj"
 
 #login form class
 class LoginForm(FlaskForm):
-    username = StringField("username")
-    password = StringField("password")
+    username = StringField("username: ")
+    password = StringField("password: ")
     submit = SubmitField("login")
 
 
