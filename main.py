@@ -1,9 +1,19 @@
 from flask import Flask, render_template
-import flask_wtf
+from flask_wtf import FlaskForm
+from wtforms import StringField
 
+#create flask instance
 app = Flask(__name__)
 
+#CSRF Token
+app.config["SECRET_KEY"] = "wasklefgheakmhrfgblkj"
 
+#login form class
+class Login(FlaskForm):
+    
+
+
+#set up routing
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -13,6 +23,6 @@ def home():
 def login():
     return render_template("login.html")
 
-
+#run app
 if __name__ == '__main__':
     app.run(debug=True)
